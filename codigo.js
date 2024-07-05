@@ -36,6 +36,7 @@ mostrar.addEventListener("click", ()=>{
         let ResDiv = numeros[i]/div;
 
         let decimal = new Fraction(ResDiv);
+        //asdasdsd
 
         const mos = document.createElement("P");
         const textIt = document.createTextNode(decimal);
