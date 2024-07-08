@@ -21,7 +21,6 @@ mostrar.addEventListener("click", ()=>{
 
     let ResData;
     
-
     let inputs = document.querySelectorAll('input[type="number"]');
     let arrayAns = [[],[],[]];
     let newArray = [];
@@ -37,14 +36,63 @@ mostrar.addEventListener("click", ()=>{
         }
     }
 
-    const res = arrayAns[0][0];
-
     //Primera divicion del primer elemento --falta limitarlo
     //para cuando el valor sea 0 o 1;
+
+    const res = arrayAns[0][0];
 
     for (let i = 0; i <4; i++){
         arrayAns[0][i] = arrayAns[0][i]/res;
         console.log(arrayAns);
+    }
+
+    //Convertir en 0 los valores de las filas inferiores
+
+    let OperFirst = (arrayAns[1][0]*(-1));
+    let Opersecond = (arrayAns[2][0]*(-1));
+
+    for (let i = 0; i <4; i++){
+        arrayAns[1][i] = (OperFirst*arrayAns[0][i])+arrayAns[1][i];
+        arrayAns[2][i] = (Opersecond*arrayAns[0][i])+arrayAns[2][i];
+        
+    }
+
+    //segunda divicion del segundo elemento 
+    const res1 = arrayAns[1][1];
+
+    for (let i = 1; i <4; i++){
+        arrayAns[1][i] = arrayAns[1][i]/res1;
+        console.log(arrayAns);
+    }
+
+    //Convertir en 0 los valores de las filas inferiores y superior
+
+    OperFirst = (arrayAns[0][1]*(-1));
+    Opersecond = (arrayAns[2][1]*(-1));
+
+    for (let i = 0; i <4; i++){
+        arrayAns[0][i] = (OperFirst*arrayAns[1][i])+arrayAns[0][i];
+        arrayAns[2][i] = (Opersecond*arrayAns[1][i])+arrayAns[2][i];
+        
+    }
+
+    //tercera divicion del tercer elemento 
+    const res2 = arrayAns[2][2];
+
+    for (let i = 2; i <4; i++){
+        arrayAns[2][i] = arrayAns[2][i]/res2;
+        console.log(arrayAns);
+    }
+
+    //Convertir en 0 los valores de las filas inferiores y superior
+
+    OperFirst = (arrayAns[0][2]*(-1));
+    Opersecond = (arrayAns[1][2]*(-1));
+
+    for (let i = 0; i <4; i++){
+        arrayAns[0][i] = (OperFirst*arrayAns[2][i])+arrayAns[0][i];
+        arrayAns[1][i] = (Opersecond*arrayAns[2][i])+arrayAns[1][i];
+        
     }
 
     //Imprime por pantalla la primera operacion
@@ -57,16 +105,6 @@ mostrar.addEventListener("click", ()=>{
             fragmento.appendChild(Listado);
         }
     }
-
-    const OperFirst = (arrayAns[1][0]*(-1));
-
-    for (let i = 0; i <4; i++){
-        ResData = (OperFirst*arrayAns[0][i])+arrayAns[1][i];
-        console.log(ResData);
-    }
-
-
-    
 
     miClase.appendChild(fragmento);
     
