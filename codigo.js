@@ -8,18 +8,7 @@ const mostrar = document.querySelector("#solve");
 
 mostrar.addEventListener("click", ()=>{
 
-    const aca = document.querySelector(".aca");
-    const item = document.createElement("DIV");
-    item.classList.add("mi-clase");
-    aca.appendChild(item);
-
-    const miClase = document.querySelector(".mi-clase");
-
-    const fragmento = document.createDocumentFragment();
-    
     let k = 0;
-
-    let ResData;
     
     let inputs = document.querySelectorAll('input[type="number"]');
     let arrayAns = [[],[],[]];
@@ -43,8 +32,10 @@ mostrar.addEventListener("click", ()=>{
 
     for (let i = 0; i <4; i++){
         arrayAns[0][i] = arrayAns[0][i]/res;
-        console.log(arrayAns);
+
     }
+
+    mostrar(arrayAns);
 
     //Convertir en 0 los valores de las filas inferiores
 
@@ -54,18 +45,20 @@ mostrar.addEventListener("click", ()=>{
     for (let i = 0; i <4; i++){
         arrayAns[1][i] = (OperFirst*arrayAns[0][i])+arrayAns[1][i];
         arrayAns[2][i] = (Opersecond*arrayAns[0][i])+arrayAns[2][i];
-        
     }
+
+    mostrar(arrayAns);
 
     //segunda divicion del segundo elemento 
     const res1 = arrayAns[1][1];
 
     for (let i = 1; i <4; i++){
         arrayAns[1][i] = arrayAns[1][i]/res1;
-        console.log(arrayAns);
     }
 
-    //Convertir en 0 los valores de las filas inferiores y superior
+    mostrar(arrayAns);
+
+    //Convertir en 0 los valores de las filas inferior y superior
 
     OperFirst = (arrayAns[0][1]*(-1));
     Opersecond = (arrayAns[2][1]*(-1));
@@ -73,18 +66,20 @@ mostrar.addEventListener("click", ()=>{
     for (let i = 0; i <4; i++){
         arrayAns[0][i] = (OperFirst*arrayAns[1][i])+arrayAns[0][i];
         arrayAns[2][i] = (Opersecond*arrayAns[1][i])+arrayAns[2][i];
-        
     }
+
+    mostrar(arrayAns);
 
     //tercera divicion del tercer elemento 
     const res2 = arrayAns[2][2];
 
     for (let i = 2; i <4; i++){
         arrayAns[2][i] = arrayAns[2][i]/res2;
-        console.log(arrayAns);
     }
 
-    //Convertir en 0 los valores de las filas inferiores y superior
+    mostrar(arrayAns);
+
+    //Convertir en 0 los valores de las filas inferior y superior
 
     OperFirst = (arrayAns[0][2]*(-1));
     Opersecond = (arrayAns[1][2]*(-1));
@@ -92,25 +87,35 @@ mostrar.addEventListener("click", ()=>{
     for (let i = 0; i <4; i++){
         arrayAns[0][i] = (OperFirst*arrayAns[2][i])+arrayAns[0][i];
         arrayAns[1][i] = (Opersecond*arrayAns[2][i])+arrayAns[1][i];
-        
     }
 
-    //Imprime por pantalla la primera operacion
+    mostrar(arrayAns);
 
-    for (let i = 0; i <3; i++){
-        for (let j = 0; j <4; j++){
-            ResData = arrayAns[i][j];
-            const Listado = document.createElement("P");
-            Listado.innerHTML = ResData;
-            fragmento.appendChild(Listado);
-        }
+    //Funcion imprime por pantalla cada operacion
+
+    function mostrar(arrayAns){
+        const aca = document.querySelector(".aca");
+        const item = document.createElement("DIV");
+        item.classList.add("mi-clase");
+        item.innerHTML = 
+        `<p>(${Number(arrayAns[0][0])})x </p>
+        <p>(${Number(arrayAns[0][1])})y</p>
+        <p>(${Number(arrayAns[0][2])})z = </p>
+        <p>${Number(arrayAns[0][3])}</p>
+
+        <p>(${Number(arrayAns[1][0])})x</p>
+        <p>(${Number(arrayAns[1][1])})y</p>
+        <p>(${Number(arrayAns[1][2])})z = </p>
+        <p>${Number(arrayAns[1][3])}</p>
+
+        <p>(${Number(arrayAns[2][0])})x</p>
+        <p>(${Number(arrayAns[2][1])})y</p>
+        <p>(${Number(arrayAns[2][2])})z = </p>
+        <p>${Number(arrayAns[2][3])}</p>
+        <br>
+        `
+        aca.appendChild(item);
     }
-
-    miClase.appendChild(fragmento);
-    
-    console.log(arrayAns);
-
-    console.log(newArray);
 
 });
 
